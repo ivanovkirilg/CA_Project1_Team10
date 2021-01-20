@@ -1,6 +1,9 @@
 #include <stdio.h>
 
+int findMSB(int iNumber);
+
 int main() {
+
     
     return 0;
 }
@@ -13,4 +16,5 @@ int findMSB(int iNumber) {
         mask >>= 1u;
         bit = mask & iNumber;
     }
+    return index;
 }
