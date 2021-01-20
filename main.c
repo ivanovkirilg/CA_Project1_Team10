@@ -3,10 +3,12 @@
 unsigned int encodeNumbers(void);
 void decodeNumber(unsigned int numberToDecode);
 int decodeNumberReturnIterations(unsigned int numberToDecode);
+void dcdNmbr(unsigned int n);
 
 int main() {
-    unsigned int num = encodeNumbers();
-    decodeNumber(num);
+    //unsigned int iNumber = encodeNumbers();
+    decodeNumber(3376253299U);
+    dcdNmbr(3376253299U);
 
     return 0;
 }
@@ -16,7 +18,7 @@ void decodeNumber(unsigned int numberToDecode) {
     do {
         unsigned int currentNumber = numberToDecode & mask;
         printf("%d\n", currentNumber);
-    } while ( numberToDecode >>= 5);
+    } while (numberToDecode >>= 5);
 }
 
 unsigned int encodeNumbers(void) {
@@ -48,4 +50,9 @@ int decodeNumberReturnIterations(unsigned int numberToDecode) {
         printf("%d\n", currentNumber);
     } while ( numberToDecode >>= 5);
     return iterations;
+}
+
+void dcdNmbr(unsigned int n) {
+    do printf("%d ", (n << 27) >> 27);
+    while ( n >>= 5);
 }
