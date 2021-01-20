@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int findMSB(int iNumber);
+void printInBinary();
 
 int main() {
     int numberToDecode = 10230;
@@ -32,4 +33,14 @@ int findMSB(int iNumber) {
         bit = mask & iNumber;
     }
     return index;
+}
+
+void printInBinary(long long number, unsigned int bitsToPrint)
+{
+    unsigned int i = 1;
+    for(i <<= bitsToPrint - 1; i > 0; i >>= 1) {
+        if (i&number) printf("1");
+        else printf("0");
+    }
+    printf("\n");
 }
