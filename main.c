@@ -1,24 +1,27 @@
 #include <stdio.h>
 
 unsigned int encodeNumbers(void);
-void decodeNumber(unsigned int numberToDecode);
+void decodeNumber(void);
 int decodeNumberReturnIterations(unsigned int numberToDecode);
 void dcdNmbr(unsigned int n);
 
 int main() {
     //unsigned int iNumber = encodeNumbers();
-    decodeNumber(3376253299U);
+    decodeNumber();
     dcdNmbr(3376253299U);
 
     return 0;
 }
 
-void decodeNumber(unsigned int numberToDecode) {
-    unsigned int mask = 0x1Fu;
-    do {
-        unsigned int currentNumber = numberToDecode & mask;
+void decodeNumber(void) {
+    unsigned int numberToDecode;
+    printf("\nEnter number:\n");
+    scanf("%d",  &numberToDecode); 
+    unsigned int mask = 0x1Fu; // Построяване на маска
+    do {unsigned int currentNumber = numberToDecode & mask; 
         printf("%d\n", currentNumber);
-    } while (numberToDecode >>= 5);
+    } while ( numberToDecode >>= 5); // do ще се изпулнява докато числото не стане 0
+
 }
 
 unsigned int encodeNumbers(void) {
