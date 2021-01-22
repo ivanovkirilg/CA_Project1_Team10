@@ -6,16 +6,31 @@
 
 #include <stdio.h>
 
-void decodeNumber(unsigned int numberToDecode); // <---------- основната функция за задачата
-void dcdNmbr(unsigned int n); // кратка вариация
+void decodeNumber(unsigned int numberToDecode); // <---------- основната функция за задачата с маска
+void dcdNmbr(unsigned int n); // <---------------------------- оптимизирана версия
 unsigned int encodeNumbers(void); // обратна на другите
 
 int main() {
-    int userNumber = 0;
-    printf("\nEnter whole number:\n");
-    scanf("%d",  &userNumber); 
 
+    unsigned int userNumber = 0;
+    
+/*  TEST FUNCTION 1 */
+    printf("Enter whole number: ");
+    scanf("%d", &userNumber);
+    printf("%u\n", userNumber);
     decodeNumber(userNumber);
+
+/*  TEST FUNCTION 2
+    printf("Enter whole number: ");
+    scanf("%d", &userNumber);
+    printf("%u\n", userNumber);
+    dcdNmbr(userNumber);
+    */
+
+/*  TEST FUNCTION 3
+    userNumber = encodeNumbers();
+    printf("%u\n", userNumber);
+    */
 
     return 0;
 }
@@ -29,10 +44,20 @@ void decodeNumber(unsigned int numberToDecode) {
     return;                             // като на всеки цикъл го измества надясно
 }
 
-void dcdNmbr(unsigned int n) {
+void dcdNmbr(unsigned int n) {          // do, за да принтнем 0, ако числото е нула
     do printf("%d ", (n << 27) >> 27);  // трием левите битове и връщаме числото в началото
-    while ( n >>= 5);                   // докато числото не стане 0
+    while (n >>= 5);                    // докато числото не стане 0
 }
+/* пример стъпка по стъпка:
+
+255         00111 11111
+<< 27 (000) 11111 0000 ....
+>> 27        ...  11111
+
+255           111 11111    
+>>=5        00000 00111 (00000)
+*/
+
 
 unsigned int encodeNumbers(void) {
     int enteredNumber = 0;          // числото, което въвежда потребителят

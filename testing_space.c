@@ -1,17 +1,21 @@
 #include <stdio.h>
 
+/* ---- ПОЛЕЗНИ ФУНКЦИИ ---- */
 int findMSB(int iNumber);
-void printInBinary();
+void printInBinary(long long number, unsigned int bitsToPrint);
 
 int main() {
+    
+
+    /* ---- СТАР КОД ---- */
+    /*
     int numberToDecode = 10230;
     int mask = 0x1F;
-
     do {
         int currentNumber = numberToDecode & mask;
         printf("%d\n", currentNumber);
     } while ( numberToDecode >>= 5);
-
+ */
     /* int iterations = 0;
     iterations = findMSB(numberToDecode) / 5;
     printf("msb: %d\n", findMSB(numberToDecode));
