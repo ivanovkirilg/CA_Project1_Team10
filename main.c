@@ -6,23 +6,24 @@
 
 #include <stdio.h>
 
-void decodeNumber(void); // <---------- основната функция за задачата
+void decodeNumber(unsigned int numberToDecode); // <---------- основната функция за задачата
 void dcdNmbr(unsigned int n);
 unsigned int encodeNumbers(void);
 
 int main() {
-    decodeNumber();
+    int userNumber = 0;
+    printf("\nEnter whole number:\n");
+    scanf("%d",  &userNumber); 
+
+    decodeNumber(userNumber);
 
     return 0;
 }
 
-void decodeNumber(void) {
-    unsigned int numberToDecode;
-    printf("\nEnter number:\n");
-    scanf("%d",  &numberToDecode); 
+void decodeNumber(unsigned int numberToDecode) {
     unsigned int mask = 0x1Fu; // Построяване на маска  ... 0000 0001 1111
     do {
-        unsigned int currentNumber = numberToDecode & mask; 
+        unsigned int currentNumber = numberToDecode & mask; // Запазваме само първите 5 бита от числото
         printf("%d ", currentNumber);
     } while ( numberToDecode >>= 5);    // do ще се изпълнява докато числото не стане 0
     return;                             // като на всеки цикъл го измества надясно
