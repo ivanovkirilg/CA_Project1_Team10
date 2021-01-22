@@ -7,8 +7,8 @@
 #include <stdio.h>
 
 void decodeNumber(unsigned int numberToDecode); // <---------- основната функция за задачата
-void dcdNmbr(unsigned int n);
-unsigned int encodeNumbers(void);
+void dcdNmbr(unsigned int n); // кратка вариация
+unsigned int encodeNumbers(void); // обратна на другите
 
 int main() {
     int userNumber = 0;
@@ -25,7 +25,7 @@ void decodeNumber(unsigned int numberToDecode) {
     do {
         unsigned int currentNumber = numberToDecode & mask; // Запазваме само първите 5 бита от числото
         printf("%d ", currentNumber);
-    } while ( numberToDecode >>= 5);    // do ще се изпълнява докато числото не стане 0
+    } while (numberToDecode >>= 5);     // do ще се изпълнява докато числото не стане 0
     return;                             // като на всеки цикъл го измества надясно
 }
 
@@ -47,7 +47,7 @@ unsigned int encodeNumbers(void) {
         encodedNumber |= enteredNumber << i*5;  // записваме въведеното 5-битово число
     }
     do {
-        printf("Enter 2-bit number (0-3) for position 30: ");
+        printf("Enter 2-bit number (0-3) for position 30: "); // правим същото за последните 2 бита
         scanf("%d", &enteredNumber);
     } while (enteredNumber < 0 || enteredNumber > 3);
     encodedNumber |= enteredNumber << 30;
