@@ -6,8 +6,6 @@ int validDate();
 
 int main()
 {
-    
-
     double luxRoomPrice = 180;
     double standartRoomPrice = 120;
 
@@ -120,7 +118,7 @@ int main()
 
         switch (ch3)
         {
-             case 1:
+            case 1:
             
                  printf("You get 20 percent discount.\n");
                  discount3 = subTotal * 0.20;
@@ -143,7 +141,7 @@ int main()
     }
     else
     {   
-             goto finalOffer;     
+            goto finalOffer;     
     }
 
     finalOffer:
@@ -164,5 +162,4 @@ int main()
     t=time(NULL);
     t+=14*24*60*60;
     printf("Offer is valid until %s", ctime(&t) );
-    
- }
+}
