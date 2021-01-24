@@ -2,12 +2,14 @@
 #include <time.h>
 #include <string.h>
 
+#define SECONDS_TO_DAYS 24*60*60
+
 int validDate();
 
 int main()
 {
-    double luxRoomPrice = 180;
-    double standartRoomPrice = 120;
+    const double c_luxRoomPrice = 180;
+    const double c_standartRoomPrice = 120;
 
     printf("Welcome to hotel Sunrise!\n");
     printf("In our hotel we have luxury and standard rooms.\n");
@@ -39,7 +41,7 @@ int main()
             scanf("%d", &nightsLuxury);
             printf("How many luxury rooms would you like?\n");
             scanf("%d", &roomsLuxury);
-            subTotal = (subTotal + (nightsLuxury * luxRoomPrice * roomsLuxury));
+            subTotal = (subTotal + (nightsLuxury * c_luxRoomPrice * roomsLuxury));
             roomsLuxuryTotal = roomsLuxury + roomsLuxuryTotal;
             nightsLuxuryTotal = nightsLuxury * roomsLuxury + nightsLuxuryTotal;
             printf("Your bill is  %.2f leva.\n", subTotal);
@@ -51,7 +53,7 @@ int main()
             scanf("%d", &nightsStandart);
             printf("How many standart rooms would you like?\n");
             scanf("%d", &roomStandart);
-            subTotal = (subTotal + (nightsStandart * standartRoomPrice * roomStandart));
+            subTotal = (subTotal + (nightsStandart * c_standartRoomPrice * roomStandart));
             roomStandartTotal = roomStandart + roomStandartTotal;
             nightsStandartTotal = nightsStandart * roomStandart + nightsStandartTotal;
             printf("Your bill is  %.2f leva.\n", subTotal);
@@ -157,9 +159,10 @@ int main()
 
    return 0;
 }
- int validDate(){
+
+int validDate(){
     long long int t;
-    t=time(NULL);
-    t+=14*24*60*60;
+    t = time(NULL);
+    t += 14 * SECONDS_TO_DAYS; // две седмици (14 дена) след сегашното време
     printf("Offer is valid until %s", ctime(&t) );
 }
