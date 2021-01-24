@@ -5,6 +5,7 @@
 #define SECONDS_TO_DAYS 24*60*60
 
 int validDate();
+void chooseRooms(char type[], unsigned short int *number, unsigned short int *nights);
 
 int main()
 {
@@ -17,13 +18,9 @@ int main()
 
     char choice = 0;
     unsigned short int roomsLuxury = 0;
-    unsigned short int roomsLuxuryTotal = 0;
     unsigned short int nightsLuxury = 0;
-    unsigned short int nightsLuxuryTotal = 0;
     unsigned short int roomsStandard = 0;
-    unsigned short int roomsStandardTotal = 0;
     unsigned short int nightsStandard = 0;
-    unsigned short int nightsStandardTotal = 0;
     double subTotal = 0;
     float touristTax = 0;
     double total = 0;
@@ -36,26 +33,16 @@ int main()
         scanf("%s", &choice);
         if (choice == '1')
         {
-            printf("Your choice is Luxury room.\n");
-            printf("How many nights are you going to stay?\n");
-            scanf("%d", &nightsLuxury);
-            printf("How many Luxury rooms would you like?\n");
-            scanf("%d", &roomsLuxury);
-            subTotal = (subTotal + (nightsLuxury * c_luxuryRoomPrice * roomsLuxury));
-            roomsLuxuryTotal = roomsLuxury + roomsLuxuryTotal;
-            nightsLuxuryTotal = nightsLuxury * roomsLuxury + nightsLuxuryTotal;
+            chooseRooms("Luxury", &roomsLuxury, &nightsLuxury);
+            subTotal = roomsStandard * nightsStandard * c_standardRoomPrice;
+            subTotal += roomsLuxury * nightsLuxury * c_luxuryRoomPrice;
             printf("Your bill is  %.2f leva.\n", subTotal);
         }
         else if (choice == '2')
         {
-            printf("Your choice is Standard room.\n");
-            printf("How many nights are you going to stay?\n");
-            scanf("%d", &nightsStandard);
-            printf("How many Standard rooms would you like?\n");
-            scanf("%d", &roomsStandard);
-            subTotal = (subTotal + (nightsStandard * c_standardRoomPrice * roomsStandard));
-            roomsStandardTotal = roomsStandard + roomsStandardTotal;
-            nightsStandardTotal = nightsStandard * roomsStandard + nightsStandardTotal;
+            chooseRooms("Standard", &roomsStandard, &nightsStandard);
+            subTotal = roomsStandard * nightsStandard * c_standardRoomPrice;
+            subTotal += roomsLuxury * nightsLuxury * c_luxuryRoomPrice;
             printf("Your bill is  %.2f leva.\n", subTotal);
         }
         else if (choice == '3')
@@ -68,7 +55,7 @@ int main()
         }
     }
     unsigned short int totalNights = 0;
-    totalNights = nightsStandardTotal + nightsLuxuryTotal;
+    totalNights = nightsStandard + nightsLuxury;
 
     if (totalNights > 5 && subTotal < 700)
     {
@@ -150,13 +137,22 @@ int main()
         printf("You owe tourist tax: %.2f leva.\n", touristTax);
         total = subTotal + touristTax;
         printf("######################\nYour final offer is:\n");
-        printf("Standard rooms: %d\n", roomsStandardTotal);
-        printf("Luxury rooms: %d\n", roomsLuxuryTotal);
+        printf("Standard rooms: %d\n", roomsStandard);
+        printf("Luxury rooms: %d\n", roomsLuxury);
         printf("Total nights: %d\n", totalNights);
         printf("Final bill: %.2f leva\n######################\n", total);
         validDate();
 
    return 0;
+}
+
+/* Вече повторното избиране на стая презаписва избора, а не добавя към предишния */
+void chooseRooms(char type[], unsigned short int *number, unsigned short int *nights) {
+    printf("Your choice is %s room.\n", type);
+    printf("How many nights are you going to stay?\n");
+    scanf("%hu", nights);
+    printf("How many %s rooms would you like?\n", type);
+    scanf("%hu", number);
 }
 
 int validDate(){
