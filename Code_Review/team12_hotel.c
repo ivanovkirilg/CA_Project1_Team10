@@ -27,6 +27,7 @@ int main()
     double touristTax = 0;
     double total = 0;
 
+    /* ------------ ГЛАВНО МЕНЮ ------------ */
     char choice = 0;
     printf("\nWelcome to hotel Sunrise!\n");
     printf("In our hotel we have Luxury and Standard rooms.\n");
@@ -44,6 +45,7 @@ int main()
         switch (choice) 
         {
             case '1':
+                /* Функцията е меню за избор брой на стаи и ноюувки, връща общата цена */
                 luxuryTotal = chooseRooms("Luxury", c_luxuryRoomPrice, &roomsLuxury, &nightsLuxury);
                 subTotal = luxuryTotal + standardTotal;
                 printf("Your current bill is %.2f leva.\n", subTotal);
@@ -64,6 +66,7 @@ int main()
         }
     }
 
+    /* ------------ ОТСТЪПКИ И БОНУСИ ------------  */
     totalNights = nightsStandard * roomsStandard + nightsLuxury * roomsLuxury;
 
     if (totalNights > 5 && subTotal < 700)
@@ -75,6 +78,7 @@ int main()
         printf("Your bill after discount is: %.2f leva.\n", subTotal);
     }
 
+    /* Отстъпка за над 700лв оборот */
     else if (subTotal > 700 && subTotal < 1000)
     {
         char choice2 = 0;
@@ -109,6 +113,7 @@ int main()
         }
     }
 
+    /* Отстъпка за над 1000лв оборот */
     else if (subTotal > 1000)
     {
         char choice3 = 0;
@@ -149,6 +154,7 @@ int main()
         }
     }
 
+    /* ------------ ФИНАЛНА ОФЕРТА ------------ */
     touristTax = subTotal * TOURIST_TAX_RATE;
     total = subTotal + touristTax;
     printf("You owe tourist tax: %.2f leva.\n", touristTax);
